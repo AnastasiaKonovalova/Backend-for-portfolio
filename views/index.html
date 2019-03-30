@@ -1,50 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href=".././css/index.css" rel="stylesheet" />
-  </head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <head><link href="./css/index.css" rel="stylesheet"></head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Welcome</title>
   <title>test webpack pug</title>
   <body class="has_bg_image">
-    <div class="wrapper" id="wrapper">
-      <?xml version="1.0" encoding="utf-8"?>
-      <svg version="1.1" id="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <symbol id="arrow_down" viewBox="0 0 25.18 16.164">
-          <g>
-            <path
-              d="M13.293,15.871c-0.391,0.391-1.016,0.391-1.406,0L0.293,4.293c-0.391-0.391-0.391-1.031,0-1.422
+    <div class="wrapper" id="wrapper"><?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<symbol id="arrow_down" viewBox="0 0 25.18 16.164">
+		<g>
+			<path d="M13.293,15.871c-0.391,0.391-1.016,0.391-1.406,0L0.293,4.293c-0.391-0.391-0.391-1.031,0-1.422
 				l2.594-2.578c0.391-0.391,1.016-0.391,1.406,0L12.59,8.59l8.297-8.297c0.391-0.391,1.016-0.391,1.406,0l2.594,2.578
-				c0.391,0.391,0.391,1.031,0,1.422L13.293,15.871z"
-            />
-          </g>
-        </symbol>
+				c0.391,0.391,0.391,1.031,0,1.422L13.293,15.871z"/>
+		</g>
+	</symbol>
 
-        <symbol id="arrow_up" viewBox="0 0 42.736 27.435">
-          <g>
-            <path
-              d="M42.239,20.149c0.663,0.662,0.663,1.75,0,2.413l-4.401,4.376c-0.663,0.662-1.725,0.662-2.388,0
+	<symbol id="arrow_up" viewBox="0 0 42.736 27.435">
+		<g>
+			<path d="M42.239,20.149c0.663,0.662,0.663,1.75,0,2.413l-4.401,4.376c-0.663,0.662-1.725,0.662-2.388,0
 				L21.369,12.856L7.287,26.938c-0.663,0.662-1.724,0.662-2.387,0l-4.402-4.376c-0.663-0.663-0.663-1.751,0-2.413L20.175,0.498
-				c0.663-0.663,1.724-0.663,2.387,0L42.239,20.149z"
-            />
-          </g>
-        </symbol>
+				c0.663-0.663,1.724-0.663,2.387,0L42.239,20.149z"/>
+		</g>
+	</symbol>
 
-        <symbol id="arrow_down_2" viewBox="0 0 42.736 27.435">
-          <g>
-            <path
-              d="M22.563,26.938c-0.663,0.663-1.724,0.663-2.387,0L0.498,7.286c-0.663-0.663-0.663-1.75,0-2.413L4.9,0.497
+	<symbol id="arrow_down_2" viewBox="0 0 42.736 27.435">
+		<g>
+			<path d="M22.563,26.938c-0.663,0.663-1.724,0.663-2.387,0L0.498,7.286c-0.663-0.663-0.663-1.75,0-2.413L4.9,0.497
 				c0.663-0.663,1.724-0.663,2.387,0l14.082,14.082L35.45,0.497c0.663-0.663,1.725-0.663,2.388,0l4.401,4.376
-				c0.663,0.663,0.663,1.75,0,2.413L22.563,26.938z"
-            />
-          </g>
-        </symbol>
+				c0.663,0.663,0.663,1.75,0,2.413L22.563,26.938z"/>
+		</g>
+	</symbol>
 
-        <symbol id="link" viewBox="0 0 19.125 19.125">
-          <g>
-            <path
-              d="M18.129,16.441l-1.723,1.711c-0.633,0.633-1.488,0.973-2.379,0.973c-0.902,0-1.758-0.352-2.391-0.996
+	<symbol id="link" viewBox="0 0 19.125 19.125">
+		<g>
+			<path d="M18.129,16.441l-1.723,1.711c-0.633,0.633-1.488,0.973-2.379,0.973c-0.902,0-1.758-0.352-2.391-0.996
 				l-2.414-2.426C8.59,15.07,8.25,14.215,8.25,13.324c0-0.926,0.375-1.805,1.031-2.449L8.25,9.844
 				c-0.645,0.656-1.512,1.031-2.438,1.031c-0.891,0-1.758-0.352-2.391-0.984L0.984,7.453C0.34,6.809,0,5.965,0,5.063
 				c0-0.891,0.363-1.758,0.996-2.379l1.723-1.711C3.352,0.34,4.207,0,5.098,0C6,0,6.855,0.352,7.488,0.996l2.414,2.426
@@ -57,141 +47,100 @@
 				l-2.438-2.438c-0.211-0.211-0.504-0.328-0.797-0.328c-0.34,0-0.609,0.129-0.844,0.375c0.387,0.387,0.844,0.715,0.844,1.313
 				c0,0.621-0.504,1.125-1.125,1.125c-0.598,0-0.926-0.457-1.313-0.844c-0.246,0.234-0.387,0.504-0.387,0.855
 				c0,0.293,0.117,0.586,0.328,0.797l2.414,2.426c0.211,0.211,0.504,0.316,0.797,0.316s0.586-0.105,0.797-0.305l1.723-1.711
-				c0.211-0.211,0.328-0.492,0.328-0.785C16.875,13.758,16.758,13.477,16.547,13.266z"
-            />
-          </g>
-        </symbol>
+				c0.211-0.211,0.328-0.492,0.328-0.785C16.875,13.758,16.758,13.477,16.547,13.266z"/>
+		</g>
+	</symbol>
 
-        <symbol id="check" viewBox="0 0 18.164 13.922">
-          <g>
-            <path
-              d="M17.836,3.516L9.352,12l-1.594,1.594c-0.211,0.211-0.504,0.328-0.797,0.328s-0.586-0.117-0.797-0.328
+	<symbol id="check" viewBox="0 0 18.164 13.922">
+		<g>
+			<path d="M17.836,3.516L9.352,12l-1.594,1.594c-0.211,0.211-0.504,0.328-0.797,0.328s-0.586-0.117-0.797-0.328
 				L4.57,12L0.328,7.758C0.117,7.547,0,7.254,0,6.961s0.117-0.586,0.328-0.797L1.922,4.57c0.211-0.211,0.504-0.328,0.797-0.328
 				S3.305,4.359,3.516,4.57l3.445,3.457l7.688-7.699C14.859,0.117,15.152,0,15.445,0s0.586,0.117,0.797,0.328l1.594,1.594
-				c0.211,0.211,0.328,0.504,0.328,0.797S18.047,3.305,17.836,3.516z"
-            />
-          </g>
-        </symbol>
-
-        <symbol id="password" viewBox="0 0 16.897 15.984">
-          <g>
-            <path
-              d="M15.743,12.078c-0.261,0-1.074-0.943-1.285-1.154l-0.964,0.964l2.209,2.209
+				c0.211,0.211,0.328,0.504,0.328,0.797S18.047,3.305,17.836,3.516z"/>
+		</g>
+	</symbol>
+	
+	<symbol id="password" viewBox="0 0 16.897 15.984">
+		<g>
+			<path d="M15.743,12.078c-0.261,0-1.074-0.943-1.285-1.154l-0.964,0.964l2.209,2.209
 				c0.181,0.181,0.281,0.432,0.281,0.683c0,0.563-0.643,1.205-1.205,1.205c-0.251,0-0.502-0.101-0.683-0.281L7.359,8.966
 				c-1.054,0.783-2.339,1.315-3.664,1.315C1.506,10.281,0,8.765,0,6.586C0,3.293,3.293,0,6.586,0c2.18,0,3.695,1.506,3.695,3.695
 				c0,1.325-0.532,2.61-1.315,3.665l3.564,3.564l0.964-0.964c-0.211-0.211-1.154-1.024-1.154-1.285c0-0.231,0.924-1.155,1.154-1.155
 				c0.08,0,0.171,0.041,0.23,0.101c0.372,0.372,3.173,3.012,3.173,3.303C16.897,11.154,15.974,12.078,15.743,12.078z M6.426,1.928
 				c-1.064,0-1.928,0.863-1.928,1.928c0,0.291,0.07,0.572,0.19,0.833C4.428,4.568,4.146,4.498,3.855,4.498
 				c-1.064,0-1.928,0.863-1.928,1.928s0.863,1.928,1.928,1.928S5.783,7.49,5.783,6.426c0-0.291-0.07-0.572-0.19-0.833
-				c0.261,0.121,0.542,0.191,0.833,0.191c1.064,0,1.928-0.863,1.928-1.928S7.49,1.928,6.426,1.928z"
-            />
-          </g>
-        </symbol>
+				c0.261,0.121,0.542,0.191,0.833,0.191c1.064,0,1.928-0.863,1.928-1.928S7.49,1.928,6.426,1.928z"/>
+		</g>
 
-        <symbol id="login" viewBox="0 0 14.137 15.422">
-          <g>
-            <path
-              d="M11.456,15.422H2.681C1.084,15.422,0,14.448,0,12.821c0-2.269,0.532-5.753,3.474-5.753
+	</symbol>
+
+	<symbol id="login" viewBox="0 0 14.137 15.422">
+		<g>
+			<path d="M11.456,15.422H2.681C1.084,15.422,0,14.448,0,12.821c0-2.269,0.532-5.753,3.474-5.753
 				c0.312,0,1.627,1.396,3.595,1.396s3.283-1.396,3.595-1.396c2.941,0,3.474,3.484,3.474,5.753
 				C14.137,14.448,13.053,15.422,11.456,15.422z M7.068,7.711c-2.129,0-3.855-1.727-3.855-3.855S4.939,0,7.068,0
-				s3.855,1.727,3.855,3.855S9.197,7.711,7.068,7.711z"
-            />
-          </g>
-        </symbol>
+				s3.855,1.727,3.855,3.855S9.197,7.711,7.068,7.711z"/>
+		</g>
+	</symbol>
 
-        <symbol id="quotes" viewBox="0 0 75.999 75.999">
-          <g>
-            <path
-              d="M14.579,5C6.527,5,0,11.716,0,20c0,8.285,6.527,15,14.579,15C29.157,35,19.438,64,0,64v7
+	<symbol id="quotes" viewBox="0 0 75.999 75.999">
+		<g>
+			<path d="M14.579,5C6.527,5,0,11.716,0,20c0,8.285,6.527,15,14.579,15C29.157,35,19.438,64,0,64v7
 				C34.69,71,48.286,5,14.579,5z M56.579,5C48.527,5,42,11.716,42,20c0,8.285,6.527,15,14.579,15C71.157,35,61.438,64,42,64v7
-				C76.69,71,90.286,5,56.579,5z"
-            />
-          </g>
-        </symbol>
-      </svg>
+				C76.69,71,90.286,5,56.579,5z"/>
+		</g>
+	</symbol>
+</svg>
 
-      <div class="preloader has_bg_image" id="preloader">
-        <div class="preloader__block">
-          <div class="preloader__text">0</div>
-          <div class="preloader__img">
-            <?xml version="1.0" encoding="utf-8"?>
-            <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-            <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-            <svg
-              class="preloader__vector"
-              version="1.1"
-              id="preloader"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              width="80px"
-              height="95.113px"
-              viewBox="0 0 80 95.113"
-              enable-background="new 0 0 80 95.113"
-              xml:space="preserve"
-            >
-              <g class="preloader__1">
-                <path
-                  fill="none"
-                  stroke="#fff"
-                  stroke-width="3.9003"
-                  stroke-miterlimit="10"
-                  d="M0,38.005c6.663,0,6.663,7.801,13.327,7.801
+<div class="preloader has_bg_image" id="preloader">
+  <div class="preloader__block">
+    <div class="preloader__text">0</div>
+    <div class="preloader__img"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="preloader__vector" version="1.1" id="preloader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="80px" height="95.113px" viewBox="0 0 80 95.113" enable-background="new 0 0 80 95.113" xml:space="preserve">
+<g class="preloader__1">
+	<path fill="none" stroke="#fff" stroke-width="3.9003" stroke-miterlimit="10" d="M0,38.005c6.663,0,6.663,7.801,13.327,7.801
 		c6.665,0,6.665-7.801,13.33-7.801c6.667,0,6.667,7.801,13.334,7.801c6.666,0,6.666-7.801,13.331-7.801
-		c6.67,0,6.67,7.801,13.339,7.801S73.33,38.005,80,38.005"
-                />
-              </g>
-              <g class="preloader__2">
-                <path
-                  fill="none"
-                  stroke="#fff"
-                  stroke-width="3.9003"
-                  stroke-miterlimit="10"
-                  d="M0,61.684c6.663,0,6.663,7.801,13.327,7.801
+		c6.67,0,6.67,7.801,13.339,7.801S73.33,38.005,80,38.005"/>
+</g>
+<g class="preloader__2">
+	<path fill="none" stroke="#fff" stroke-width="3.9003" stroke-miterlimit="10" d="M0,61.684c6.663,0,6.663,7.801,13.327,7.801
 		c6.665,0,6.665-7.801,13.33-7.801c6.667,0,6.667,7.801,13.334,7.801c6.666,0,6.666-7.801,13.331-7.801
-		c6.67,0,6.67,7.801,13.339,7.801S73.33,61.684,80,61.684"
-                />
-              </g>
-              <g class="preloader__3">
-                <path
-                  fill="none"
-                  stroke="#fff"
-                  stroke-width="3.9003"
-                  stroke-miterlimit="10"
-                  d="M0,85.362c6.663,0,6.663,7.801,13.327,7.801
+		c6.67,0,6.67,7.801,13.339,7.801S73.33,61.684,80,61.684"/>
+</g>
+<g class="preloader__3">
+	<path fill="none" stroke="#fff" stroke-width="3.9003" stroke-miterlimit="10" d="M0,85.362c6.663,0,6.663,7.801,13.327,7.801
 		c6.665,0,6.665-7.801,13.33-7.801c6.667,0,6.667,7.801,13.334,7.801c6.666,0,6.666-7.801,13.331-7.801
-		c6.67,0,6.67,7.801,13.339,7.801S73.33,85.362,80,85.362"
-                />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
+		c6.67,0,6.67,7.801,13.339,7.801S73.33,85.362,80,85.362"/>
+</g>
+</svg>
+
+    </div>
+  </div>
+</div>
       <div class="parallax" id="parallax"></div>
       <div class="auth">
         <button class="auth__button button" id="authButton">Авторизоваться</button>
       </div>
       <div class="entrance-block flip-container">
         <div class="flipper" id="flippedBlock">
-          <div class="front">
-            <?xml version="1.0" encoding="utf-8"?>
-            <svg id="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <symbol id="in" viewBox="0 0 24 22.938">
-                <g>
-                  <path
-                    d="M2.875,5.344H2.844C1.109,5.344,0,4.156,0,2.672C0,1.156,1.156,0,2.906,0c1.766,0,2.859,1.156,2.875,2.672
+          <div class="front"><?xml version="1.0" encoding="utf-8"?>
+<svg id="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<symbol id="in" viewBox="0 0 24 22.938">
+		<g>
+			<path d="M2.875,5.344H2.844C1.109,5.344,0,4.156,0,2.672C0,1.156,1.156,0,2.906,0c1.766,0,2.859,1.156,2.875,2.672
 				C5.797,4.156,4.672,5.344,2.875,5.344z M5.453,22.938H0.297V7.453h5.156V22.938z M24,22.938h-5.141v-8.281
 				c0-2.078-0.75-3.5-2.609-3.5c-1.422,0-2.266,0.953-2.641,1.875c-0.125,0.344-0.172,0.797-0.172,1.266v8.641H8.297
 				c0.063-14.031,0-15.484,0-15.484h5.141v2.25h-0.031c0.672-1.063,1.891-2.609,4.672-2.609c3.391,0,5.922,2.219,5.922,6.969V22.938z"
-                  />
-                </g>
-              </symbol>
+			/>
+		</g>
+	</symbol>
 
-              <symbol id="vk" viewBox="0 0 30.011 17.123">
-                <g>
-                  <path
-                    d="M27.625,5.832c-3.031,4.031-3.359,3.656-0.859,5.984c2.406,2.234,2.906,3.313,2.984,3.453
+	<symbol id="vk" viewBox="0 0 30.011 17.123">
+		<g>
+			<path d="M27.625,5.832c-3.031,4.031-3.359,3.656-0.859,5.984c2.406,2.234,2.906,3.313,2.984,3.453
 				c0,0,1,1.75-1.109,1.766l-4,0.063c-0.859,0.172-2-0.609-2-0.609c-1.5-1.031-2.906-3.703-4-3.359c0,0-1.125,0.359-1.094,2.766
 				c0.016,0.516-0.234,0.797-0.234,0.797s-0.281,0.297-0.828,0.344h-1.797c-3.953,0.25-7.438-3.391-7.438-3.391
 				S3.437,9.707,0.093,1.848c-0.219-0.516,0.016-0.766,0.016-0.766S0.343,0.785,1,0.785l4.281-0.031
@@ -201,14 +150,13 @@
 				c1.266,0.016,1.625,0.094,2.109,0.203c1.484,0.359,0.984,1.734,0.984,5.047c0,1.063-0.203,2.547,0.563,3.031
 				c0.328,0.219,1.141,0.031,3.141-3.375c0,0,0.938-1.625,1.672-3.516c0.125-0.344,0.391-0.484,0.391-0.484s0.25-0.141,0.594-0.094
 				l4.5-0.031c1.359-0.172,1.578,0.453,1.578,0.453C30.203,1.879,29.468,3.379,27.625,5.832z"
-                  />
-                </g>
-              </symbol>
+			/>
+		</g>
+	</symbol>
 
-              <symbol id="git" viewBox="0 0 26 22">
-                <g>
-                  <path
-                    d="M25.047,17.422C22.984,21.594,17.313,22,13.25,22c-4.125,0-10.141-0.359-12.281-4.578
+	<symbol id="git" viewBox="0 0 26 22">
+		<g>
+			<path d="M25.047,17.422C22.984,21.594,17.313,22,13.25,22c-4.125,0-10.141-0.359-12.281-4.578
 				C0.172,15.844,0,13.984,0,12.25c0-2.281,0.625-4.438,2.125-6.188C1.844,5.203,1.703,4.297,1.703,3.406
 				C1.703,2.234,1.969,1.063,2.5,0c2.469,0,4.047,1.078,5.922,2.547C10,2.172,11.625,2,13.25,2c1.469,0,2.953,0.156,4.375,0.5
 				C19.484,1.047,21.063,0,23.5,0c0.531,1.063,0.797,2.234,0.797,3.406c0,0.891-0.141,1.781-0.422,2.625
@@ -217,44 +165,39 @@
 				c0,4.781,4.375,5.516,8.188,5.516h2.625c3.813,0,8.188-0.734,8.188-5.516C22.5,12.609,21.047,10.5,18.5,10.5z M8,18
 				c-1.406,0-2-1.859-2-3s0.594-3,2-3s2,1.859,2,3S9.406,18,8,18z M18,18c-1.406,0-2-1.859-2-3s0.594-3,2-3s2,1.859,2,3
 				S19.406,18,18,18z"
-                  />
-                </g>
-              </symbol>
-            </svg>
+			/>
+		</g>
+	</symbol>
+
+</svg>
 
             <div class="welcome">
               <div class="welcome__info">
-                <div class="author">
-                  <div class="author__img has_bg_image"></div>
-                  <div class="author__description">
-                    <div class="author__name">Анастасия Коновалова</div>
-                    <h1 class="author__site-description author__text">Личный сайт веб-разработчика</h1>
-                  </div>
-                </div>
+                            <div class="author">
+                              <div class="author__img has_bg_image"></div>
+                              <div class="author__description">
+                                <div class="author__name">Анастасия Коновалова</div>
+                                <h1 class="author__site-description author__text">Личный сайт веб-разработчика</h1>
+                              </div>
+                            </div>
               </div>
               <div class="welcome__socials">
-                <div class="socials">
-                  <ul class="socials__list">
-                    <li class="socials__item">
-                      <a class="socials__link" href="#">
-                        <svg class="socials__vector socials__vector--vk socials__vector--rgba">
-                          <use xlink:href="#vk"></use></svg
-                      ></a>
-                    </li>
-                    <li class="socials__item">
-                      <a class="socials__link" href="#">
-                        <svg class="socials__vector socials__vector--git socials__vector--rgba">
-                          <use xlink:href="#git"></use></svg
-                      ></a>
-                    </li>
-                    <li class="socials__item">
-                      <a class="socials__link" href="#">
-                        <svg class="socials__vector socials__vector--in socials__vector--rgba">
-                          <use xlink:href="#in"></use></svg
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
+                            <div class="socials">
+                              <ul class="socials__list">
+                                <li class="socials__item"><a class="socials__link" href="#">
+                                    <svg class="socials__vector socials__vector--vk socials__vector--rgba">
+                                      <use xlink:href="#vk"></use>
+                                    </svg></a></li>
+                                <li class="socials__item"><a class="socials__link" href="#">
+                                    <svg class="socials__vector socials__vector--git socials__vector--rgba">
+                                      <use xlink:href="#git"></use>
+                                    </svg></a></li>
+                                <li class="socials__item"><a class="socials__link" href="#">
+                                    <svg class="socials__vector socials__vector--in socials__vector--rgba">
+                                      <use xlink:href="#in"></use>
+                                    </svg></a></li>
+                              </ul>
+                            </div>
               </div>
               <nav class="welcome__nav">
                 <li class="welcome__nav-item"><a class="welcome__nav-link" href="/works">Мои работы</a></li>
@@ -264,71 +207,63 @@
             </div>
           </div>
           <div class="back">
-            <div class="login">
-              <form class="login__form auth-form" id="loginForm">
-                <div class="login__main">
-                  <h2 class="login__title subtitle">Авторизуйтесь</h2>
-                  <div class="auth-form__inputs">
-                    <div class="auth-form__row">
-                      <input class="auth-form__input auth-form__input--login" id="inputLogin" placeholder="Логин" />
-                      <div class="auth-form__icon">
-                        <svg class="auth-form__vector auth-form__vector--login">
-                          <use xlink:href="#login"></use>
-                        </svg>
-                      </div>
-                    </div>
-                    <div class="auth-form__row">
-                      <input
-                        class="auth-form__input auth-form__input--password"
-                        id="inputPassword"
-                        placeholder="Пароль"
-                      />
-                      <div class="auth-form__icon">
-                        <svg class="auth-form__vector auth-form__vector--password">
-                          <use xlink:href="#password"></use>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="auth-form__check">
-                    <label class="checkbox__label auth-form__label" for="inputCheck"
-                      >Я человек
-                      <input class="auth-form__checkbox" id="inputCheck" type="checkbox" />
-                      <div class="checkbox--styled">
-                        <svg class="checkbox__vector">
-                          <use xlink:href="#check"></use>
-                        </svg>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="auth-form__question">Вы точно не робот?</div>
-                  <div class="auth-form__radio">
-                    <div class="radio__block radio__block--left">
-                      <label class="radio__label auth-form__label" for="radioYes"
-                        >Да
-                        <input class="radio__input" id="radioYes" type="radio" name="robot" />
-                        <div class="radio--styled"></div>
-                      </label>
-                    </div>
-                    <div class="radio__block radio__block--right">
-                      <label class="radio__label auth-form__label" for="radioNo"
-                        >Не уверен
-                        <input class="radio__input" id="radioNo" type="radio" name="robot" />
-                        <div class="radio--styled"></div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="login__buttons form__buttons">
-                  <button class="form__return form__button" id="backToWelcome" type="button">На главную</button>
-                  <button class="form__submit form__button" id="formSubmit" type="submit">Войти</button>
-                </div>
-              </form>
-            </div>
+<div class="login">
+  <form class="login__form auth-form" id="loginForm" method="POST">
+    <div class="login__main">
+      <h2 class="login__title subtitle">Авторизуйтесь</h2>
+      <div class="auth-form__inputs">
+        <div class="auth-form__row">
+          <input class="auth-form__input auth-form__input--login" id="inputLogin" placeholder="Логин">
+          <div class="auth-form__icon">
+            <svg class="auth-form__vector auth-form__vector--login">
+              <use xlink:href="#login"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="auth-form__row">
+          <input class="auth-form__input auth-form__input--password" id="inputPassword" placeholder="Пароль">
+          <div class="auth-form__icon">
+            <svg class="auth-form__vector auth-form__vector--password">
+              <use xlink:href="#password"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="auth-form__check">
+        <label class="checkbox__label auth-form__label" for="inputCheck">Я человек
+          <input class="auth-form__checkbox" id="inputCheck" type="checkbox">
+          <div class="checkbox--styled">
+            <svg class="checkbox__vector">
+              <use xlink:href="#check"></use>
+            </svg>
+          </div>
+        </label>
+      </div>
+      <div class="auth-form__question">Вы точно не робот?</div>
+      <div class="auth-form__radio">
+        <div class="radio__block radio__block--left">
+          <label class="radio__label auth-form__label" for="radioYes">Да
+            <input class="radio__input" id="radioYes" type="radio" name="robot">
+            <div class="radio--styled"></div>
+          </label>
+        </div>
+        <div class="radio__block radio__block--right">
+          <label class="radio__label auth-form__label" for="radioNo">Не уверен
+            <input class="radio__input" id="radioNo" type="radio" name="robot">
+            <div class="radio--styled"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="login__buttons form__buttons">
+      <button class="form__return form__button" id="backToWelcome" type="reset">На главную</button>
+      <button class="form__submit form__button" id="formSubmit" type="submit">Войти</button>
+    </div>
+  </form>
+</div>
           </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src=".././js/index.js"></script>
-  </body>
+  <script type="text/javascript" src="./js/index.js"></script></body>
 </html>

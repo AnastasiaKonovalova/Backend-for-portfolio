@@ -1,5 +1,5 @@
 const cheerio = require("cheerio");
-var path = require("path");
+const path = require("path");
 
 const works = [
   {
@@ -25,21 +25,14 @@ const works = [
   }
 ];
 
-const testErr = {
-  status: "1234",
-  stack: "1-2-3-4-5"
-};
-
 const renderPage = app => {
   let rootHTML;
   let sliderHTML;
   app.render("works.html", (err, html) => (rootHTML = html));
   app.render(
-    "components/slider.pug",
+    "components/works/slider.pug",
     {
-      myWorks: works,
-      message: "testest",
-      error: testErr
+      myWorks: works
     },
     (err, html) => {
       if (err) console.log("err", err);

@@ -1,0 +1,9 @@
+- var articles = myArticles
+
+ul.posts.posts__list
+    each val in articles
+        li.posts__item.post 
+            a(name=`${val.title}`)
+            h3.post__title=val.title
+            .post__date=val.date
+            .post__text=val.text

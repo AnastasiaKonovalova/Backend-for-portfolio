@@ -1,14 +1,11 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-const cheerio = require("cheerio");
-
-var indexRouter = require("./routes/index");
-
-var app = express();
+const indexRouter = require("./routes/index");
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -22,30 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
-
-// const testErr = {
-//   status: "1234",
-//   stack: "1-2-3-4-5"
-// };
-
-// let rootHTML;
-// let errorHTML;
-// app.render("index.html", (err, html) => (rootHTML = html));
-// app.render(
-//   "error1",
-//   {
-//     message: "testest",
-//     error: testErr
-//   },
-//   (err, html) => {
-//     errorHTML = html;
-//   }
-// );
-
-// const fnHTML = cheerio.load(rootHTML);
-// fnHTML(".login__form").append(errorHTML);
-// const WholeHTML = fnHTML.html();
-// console.log("WholeHTML", WholeHTML);
 
 app.use("/", indexRouter);
 
