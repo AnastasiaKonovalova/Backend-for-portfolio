@@ -1,6 +1,7 @@
 - var articles = myArticles
 
 ul.headers.headers__list
-    each val in articles
-        li.headers__item
-            a(href=`#${val.title}`).headers__link=val.title
+    if articles
+        each val in articles
+            li.headers__item
+                a(href=`#${val.title}`).headers__link=val.title

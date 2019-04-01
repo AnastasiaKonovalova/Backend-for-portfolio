@@ -15,9 +15,6 @@ const BlogSchema = new Schema({
   text: {
     type: String,
     required: [true, "Укажите содержимое статьи"]
-  },
-  img: {
-    type: String
   }
 });
 

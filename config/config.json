@@ -5,5 +5,8 @@
     "name": "portfolio_api",
     "user": "",
     "password": ""
+  },
+  "apiOptions": {
+    "server": "http://localhost:3000"
   }
 }

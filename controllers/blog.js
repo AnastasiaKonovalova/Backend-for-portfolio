@@ -1,5 +1,7 @@
 const cheerio = require("cheerio");
 const path = require("path");
+const http = require("request");
+const config = require("../config/config.json");
 
 const articles = [
   {
@@ -32,7 +34,7 @@ const articles = [
   }
 ];
 
-const renderPage = app => {
+const renderPage = (app, articles) => {
   let rootHTML;
   let articlesHTML;
   let headersHTML;
@@ -64,6 +66,18 @@ const renderPage = app => {
 };
 
 module.exports.getBlogPage = (req, res, next) => {
-  const html = renderPage(req.app);
-  res.send(html);
+  const pathApi = "/api/blog";
+  const requestOptions = {
+    url: config.apiOptions.server + pathApi,
+    method: "GET"
+  };
+
+  http(requestOptions, (error, response, body) => {
+    if (error) console.log("error getBlogPage http", error);
+
+    const { articles } = JSON.parse(body);
+    console.log("getBlogPage http articles", articles);
+    const html = renderPage(req.app, articles);
+    res.send(html);
+  });
 };
