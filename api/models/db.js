@@ -4,7 +4,10 @@ const config = require("../../config/config.json");
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`, { useMongoClient: true })
+  .connect(
+    `mongodb://${config.db.host}:${config.db.port}/${config.db.name}` //,
+    // { useMongoClient: true }
+  )
   .catch(e => {
     console.error("mongoose connect error", e);
     throw e;
