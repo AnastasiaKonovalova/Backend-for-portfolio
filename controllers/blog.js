@@ -1,7 +1,12 @@
 const cheerio = require("cheerio");
 const path = require("path");
 const http = require("request");
+const axios = require("axios");
 const config = require("../config/config.json");
+
+const myHttp = axios.create({
+  baseURL: "http://localhost:3000/api"
+});
 
 const articles = [
   {
@@ -38,7 +43,9 @@ const renderPage = (app, articles) => {
   let rootHTML;
   let articlesHTML;
   let headersHTML;
+
   app.render("blog.html", (err, html) => (rootHTML = html));
+
   app.render(
     "components/blog/articles_list.pug",
     {
@@ -49,6 +56,7 @@ const renderPage = (app, articles) => {
       articlesHTML = html;
     }
   );
+
   app.render(
     "components/blog/headers_list.pug",
     {
@@ -59,25 +67,38 @@ const renderPage = (app, articles) => {
       headersHTML = html;
     }
   );
+
   const fnHTML = cheerio.load(rootHTML);
   fnHTML(".posts").replaceWith(articlesHTML);
   fnHTML(".headers").replaceWith(headersHTML);
+
   return fnHTML.html();
 };
 
 module.exports.getBlogPage = (req, res, next) => {
-  const pathApi = "/api/blog";
-  const requestOptions = {
-    url: config.apiOptions.server + pathApi,
-    method: "GET"
-  };
+  myHttp
+    .get("/blog")
+    .then(response => {
+      const { articles } = JSON.parse(response);
+      console.log("getBlogPage http articles", articles);
 
-  http(requestOptions, (error, response, body) => {
-    if (error) console.log("error getBlogPage http", error);
+      const html = renderPage(req.app, articles);
+      res.send(html);
+    })
+    .catch(error => console.log("getBlogPage error axios", error));
 
-    const { articles } = JSON.parse(body);
-    console.log("getBlogPage http articles", articles);
-    const html = renderPage(req.app, articles);
-    res.send(html);
-  });
+  // const pathApi = "/api/blog";
+  // const requestOptions = {
+  //   url: config.apiOptions.server + pathApi,
+  //   method: "GET"
+  // };
+
+  // http(requestOptions, (error, response, body) => {
+  //   if (error) console.log("error getBlogPage http", error);
+
+  //   const { articles } = JSON.parse(body);
+  //   console.log("getBlogPage http articles", articles);
+  //   const html = renderPage(req.app, articles);
+  //   res.send(html);
+  // });
 };
