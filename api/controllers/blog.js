@@ -32,3 +32,22 @@ module.exports.createArticle = (req, res) => {
       });
     });
 };
+
+module.exports.deleteArticle = (req, res) => {
+  const Blog = mongoose.model("blog");
+  const id = req.params.id;
+  Blog.findByIdAndRemove(id)
+    .then(item => {
+      // console.log("findByIdAndRemove", item);
+      if (!!item) res.status(201).json({ message: "Запись успешно удалена" });
+      else {
+        res.status(404).json({ message: "Запись в БД не обнаружена" });
+      }
+    })
+    .catch(error => {
+      console.log("findByIdAndRemove error", error.message);
+      res.status(400).json({
+        message: `При удалении  записи произошла ошибка: + ${error.message}`
+      });
+    });
+};

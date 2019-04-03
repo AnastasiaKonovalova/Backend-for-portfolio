@@ -1,11 +1,10 @@
 const cheerio = require("cheerio");
 const path = require("path");
-const http = require("request");
 const axios = require("axios");
 const config = require("../config/config.json");
 
 const myHttp = axios.create({
-  baseURL: "http://localhost:3000/api"
+  baseURL: config.apiOptions.server
 });
 
 const articles = [
@@ -77,12 +76,10 @@ const renderPage = (app, articles) => {
 
 module.exports.getBlogPage = (req, res, next) => {
   myHttp
-    .get("/blog")
+    .get("/api/blog", { mode: "cors" })
     .then(response => {
-      const { articles } = JSON.parse(response);
-      console.log("getBlogPage http articles", articles);
-
-      const html = renderPage(req.app, articles);
+      const { data } = response;
+      const html = renderPage(req.app, data.articles);
       res.send(html);
     })
     .catch(error => console.log("getBlogPage error axios", error));

@@ -30,9 +30,9 @@ app.use("/", indexRouter);
 app.use("/api", indexApiRouter);
 
 // //send react html, needs testing
-// app.use("/admin", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './views/admin', 'index.html'))
-// });
+app.use("/admin", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./views/admin", "index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

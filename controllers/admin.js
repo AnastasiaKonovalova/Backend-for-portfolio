@@ -1,10 +1,9 @@
-const path = require("path");
-const http = require("request");
-const config = require("../config/config.json");
+// const path = require("path");
+// const config = require("../config/config.json");
 
-module.exports.getAdminPage = (req, res) => {
-  res.render("admin/index.html");
-};
+// module.exports.getAdminPage = (req, res) => {
+//   res.render("admin/index.html");
+// };
 
 // module.exports.addArticle = (req, res) => {
 //   const pathApi = "/api/blog";
