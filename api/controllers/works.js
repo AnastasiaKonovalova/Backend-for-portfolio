@@ -16,9 +16,11 @@ module.exports.deleteWork = (req, res) => {
   const id = req.params.id;
   Works.findByIdAndRemove(id)
     .then(item => {
-      // console.log("findByIdAndRemove", item);
-      if (!!item) res.status(201).json({ message: "Запись успешно удалена" });
-      else {
+      console.log("findByIdAndRemove", item);
+      if (!!item) {
+        fs.unlink(path.join("public/", item.img));
+        res.status(201).json({ message: "Запись успешно удалена" });
+      } else {
         res.status(404).json({ message: "Запись в БД не обнаружена" });
       }
     })
@@ -69,7 +71,7 @@ module.exports.createWork = (req, res) => {
       .save()
       .then(item => {
         console.log("Запись успешно добавлена");
-        res.status(201).json({ message: "Запись успешно добавлена" });
+        res.status(201).json({ message: "Запись успешно добавлена", work: item });
       })
       .catch(err => {
         console.log("При добавлении записи произошла ошибка");

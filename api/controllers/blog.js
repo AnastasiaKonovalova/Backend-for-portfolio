@@ -23,7 +23,7 @@ module.exports.createArticle = (req, res) => {
     .save()
     .then(item => {
       console.log("Запись успешно добавлена");
-      return res.status(201).json({ message: "Запись успешно добавлена" });
+      return res.status(201).json({ message: "Запись успешно добавлена", article: item });
     })
     .catch(error => {
       console.log("При добавлении записи произошла ошибка");
