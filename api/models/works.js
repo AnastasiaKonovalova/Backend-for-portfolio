@@ -3,15 +3,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WorksSchema = new Schema({
-  id: {
-    type: Number,
-    required: [true]
-  },
-  name: {
+  title: {
     type: String,
     required: [true, "Укажите название работы"]
   },
-  techs: {
+  stack: {
     type: String,
     required: [true, "Укажите используемые технологии"]
   },

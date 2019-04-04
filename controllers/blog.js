@@ -3,7 +3,7 @@ const path = require("path");
 const axios = require("axios");
 const config = require("../config/config.json");
 
-const myHttp = axios.create({
+const apiRequest = axios.create({
   baseURL: config.apiOptions.server
 });
 
@@ -75,7 +75,7 @@ const renderPage = (app, articles) => {
 };
 
 module.exports.getBlogPage = (req, res, next) => {
-  myHttp
+  apiRequest
     .get("/api/blog", { mode: "cors" })
     .then(response => {
       const { data } = response;

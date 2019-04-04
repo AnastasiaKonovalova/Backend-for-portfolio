@@ -4,8 +4,8 @@
   
     .works__description
         .central
-            .works__title.subtitle= works[0].name
-            .works__techs= works[0].techs
+            .works__title.subtitle= works[0].title
+            .works__techs= works[0].stack
             .works__button
                 a(href=works[0].url).works__link.link
                     svg.link__vector
@@ -19,7 +19,7 @@
                 div(class = "works__img works__img--active works__img--" + work.id)
                     img.works__pic(src=work.img)
             else
-                div(class = "works__img works__img--" + work.id)
+                div(class = "works__img works__img--" + work._id)
                     img.works__pic(src=work.img)
 
     .works__slider

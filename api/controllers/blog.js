@@ -13,7 +13,7 @@ module.exports.createArticle = (req, res) => {
 
   const Blog = mongoose.model("blog");
 
-  let item = new Blog({
+  const item = new Blog({
     title: req.body.title,
     date: new Date(req.body.date),
     text: req.body.text

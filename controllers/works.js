@@ -1,31 +1,37 @@
 const cheerio = require("cheerio");
 const path = require("path");
+const axios = require("axios");
+const config = require("../config/config.json");
+
+const apiRequest = axios.create({
+  baseURL: config.apiOptions.server
+});
 
 const works = [
   {
-    id: 1,
-    name: "школа онлайн образования школа онлайн образования",
-    techs: "HTML, CSS",
+    _id: 1,
+    title: "школа онлайн образования школа онлайн образования",
+    stack: "HTML, CSS",
     url: "#",
     img: path.normalize("/img/work-1.png")
   },
   {
-    id: 2,
-    name: "itLoft",
-    techs: "HTML, JS",
+    _id: 2,
+    title: "itLoft",
+    stack: "HTML, JS",
     url: "#",
     img: path.normalize("/img/work-2.png")
   },
   {
-    id: 3,
-    name: "smth",
-    techs: "CSS, JS",
+    _id: 3,
+    title: "smth",
+    stack: "CSS, JS",
     url: "#",
     img: path.normalize("/img/work-3.png")
   }
 ];
 
-const renderPage = app => {
+const renderPage = (app, works) => {
   let rootHTML;
   let sliderHTML;
   app.render("works.html", (err, html) => (rootHTML = html));
@@ -45,6 +51,15 @@ const renderPage = app => {
 };
 
 module.exports.getWorksPage = (req, res, next) => {
-  const html = renderPage(req.app);
-  res.send(html);
+  apiRequest
+    .get("/api/works", { mode: "cors" })
+    .then(response => {
+      const { data } = response;
+      const html = renderPage(req.app, data.works);
+      res.send(html);
+    })
+    .catch(error => console.log("getWorksPage error axios", error));
+
+  // const html = renderPage(req.app);
+  // res.send(html);
 };
