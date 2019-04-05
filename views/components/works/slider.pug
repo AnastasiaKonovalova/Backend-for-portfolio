@@ -1,54 +1,56 @@
 -var works = myWorks
-
 .slider__section
-  
-    .works__description
-        .central
-            .works__title.subtitle= works[0].title
-            .works__techs= works[0].stack
-            .works__button
-                a(href=works[0].url).works__link.link
-                    svg.link__vector
-                        use(xlink:href="#link")
-                    span.link__text Посмотреть сайт
+    if works.length
 
-    .works__main-img
+        .works__description
+            .central
+                .works__title.subtitle= works[0].title
+                .works__techs= works[0].stack
+                .works__button
+                    a(href=works[0].url).works__link.link
+                        svg.link__vector
+                            use(xlink:href="#link")
+                        span.link__text Посмотреть сайт
 
-        each work, index in works
-            if index === 0
-                div(class = "works__img works__img--active works__img--" + work.id)
-                    img.works__pic(src=work.img)
-            else
-                div(class = "works__img works__img--" + work._id)
-                    img.works__pic(src=work.img)
+        .works__main-img
 
-    .works__slider
-        .slider
-            .slider__column.slider__column--left
-                .slider__viewport
-                    each work, index in works 
-                        if index === works.length - 1
-                            .slider__img.slider__img--left.slider__img--active
-                                img.slider__pic(src=work.img)
-                        else 
-                            .slider__img.slider__img--left.slider__img--up
-                                img.slider__pic(src=work.img)
+            each work, index in works
+                if index === 0
+                    div(class = "works__img works__img--active works__img--" + work.id)
+                        img.works__pic(src=work.img)
+                else
+                    div(class = "works__img works__img--" + work._id)
+                        img.works__pic(src=work.img)
 
-                .slider__shadow
-                button#slideDown.slider__arrow.slider__arrow--down
-                    svg.slider__vector
-                        use(xlink:href="#arrow_down_2")
-            .slider__column.slider__column--right
-                .slider__viewport
-                    each work, index in works 
-                        if index === 1
-                            .slider__img.slider__img--right.slider__img--active
-                                img.slider__pic(src=work.img + '')
-                        else 
-                            .slider__img.slider__img--right.slider__img--down
-                                img.slider__pic(src=work.img + '')
+        .works__slider
+            .slider
+                .slider__column.slider__column--left
+                    .slider__viewport
+                        each work, index in works 
+                            if index === works.length - 1
+                                .slider__img.slider__img--left.slider__img--active
+                                    img.slider__pic(src=work.img)
+                            else 
+                                .slider__img.slider__img--left.slider__img--up
+                                    img.slider__pic(src=work.img)
 
-                .slider__shadow
-                button#slideUp.slider__arrow.slider__arrow--up
-                    svg.slider__vector
-                        use(xlink:href="#arrow_up")
+                    .slider__shadow
+                    button#slideDown.slider__arrow.slider__arrow--down
+                        svg.slider__vector
+                            use(xlink:href="#arrow_down_2")
+                .slider__column.slider__column--right
+                    .slider__viewport
+                        each work, index in works 
+                            if index === 1
+                                .slider__img.slider__img--right.slider__img--active
+                                    img.slider__pic(src=work.img + '')
+                            else 
+                                .slider__img.slider__img--right.slider__img--down
+                                    img.slider__pic(src=work.img + '')
+
+                    .slider__shadow
+                    button#slideUp.slider__arrow.slider__arrow--up
+                        svg.slider__vector
+                            use(xlink:href="#arrow_up")
+    else 
+        .works__title.subtitle Работ пока нет
