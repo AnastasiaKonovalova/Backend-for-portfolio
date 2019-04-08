@@ -1,21 +1,10 @@
-- var frontend = myFrontend
-- var backend = myBackend
-- var workflow = myWorkflow
+- var skills = stack
 
 include ./stack.pug
 
 ul.stack__list
-
-    li.stack__item
-        .stack__name frontend
-        .stack__techs
-            +stack(frontend)
-    li.stack__item
-        .stack__name backend
-        .stack__techs
-            +stack(backend)
-    li.stack__item
-        .stack__name workflow
-        .stack__techs
-            +stack(workflow)
-
+    each skill in skills
+        li.stack__item
+            .stack__name=skill.type
+            .stack__techs
+                +stack(skill.skills)

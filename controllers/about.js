@@ -1,4 +1,10 @@
 const cheerio = require("cheerio");
+const axios = require("axios");
+const config = require("../config/config.json");
+
+const apiRequest = axios.create({
+  baseURL: config.apiOptions.server
+});
 
 const frontend = [{ tech: "HTML5", percent: 85 }, { tech: "CSS", percent: 70 }, { tech: "JavaScript", percent: 50 }];
 
@@ -11,16 +17,14 @@ const backend = [
 
 const workflow = [{ tech: "git", percent: 20 }, { tech: "webpack", percent: 45 }, { tech: "gulp", percent: 35 }];
 
-const renderPage = app => {
+const renderPage = (app, skills) => {
   let rootHTML;
   let stackListHTML;
   app.render("about.html", (err, html) => (rootHTML = html));
   app.render(
     "components/about/stack_list.pug",
     {
-      myFrontend: frontend,
-      myBackend: backend,
-      myWorkflow: workflow
+      stack: skills
     },
     (err, html) => {
       if (err) console.log("err", err);
@@ -33,6 +37,12 @@ const renderPage = app => {
 };
 
 module.exports.getAboutPage = (req, res, next) => {
-  const html = renderPage(req.app);
-  res.send(html);
+  apiRequest
+    .get("/api/skills")
+    .then(response => {
+      const { skills } = response.data;
+      const html = renderPage(req.app, skills);
+      res.send(html);
+    })
+    .catch(error => console.log("getBlogPage error axios", error));
 };

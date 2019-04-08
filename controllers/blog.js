@@ -76,7 +76,7 @@ const renderPage = (app, articles) => {
 
 module.exports.getBlogPage = (req, res, next) => {
   apiRequest
-    .get("/api/blog", { mode: "cors" })
+    .get("/api/blog")
     .then(response => {
       const { data } = response;
       const html = renderPage(req.app, data.articles);
