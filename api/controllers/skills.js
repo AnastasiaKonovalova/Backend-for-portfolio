@@ -9,19 +9,14 @@ module.exports.getSkills = (req, res) => {
 };
 
 module.exports.createSkill = (req, res) => {
-  // console.log("req.body", req.body);
   const Skills = mongoose.model("skills");
 
   Skills.find({ type: req.body.type })
     .then(item => {
-      // console.log("Skills.find item", item);
       if (item.length) {
-        // console.log("item found", item);
-        // console.log("item.skills", item[0].skills);
         item[0].skills = [...item[0].skills, { skill: req.body.skill, percent: req.body.percent }];
         return item[0].save();
       } else {
-        // console.log("Skills.find item not found", item);
         const skill = new Skills({
           type: req.body.type,
           skills: [{ skill: req.body.skill, percent: req.body.percent }]
@@ -31,7 +26,6 @@ module.exports.createSkill = (req, res) => {
       }
     })
     .then(item => {
-      // console.log("Skills.find item after mod + save Запись успешно добавлена", item);
       return res.status(201).json({ message: "Запись успешно добавлена", skill: item });
     })
     .catch(error => {
@@ -41,5 +35,32 @@ module.exports.createSkill = (req, res) => {
       });
     });
 };
-module.exports.editSkill = (req, res) => {};
+module.exports.editSkill = (req, res) => {
+  const Skills = mongoose.model("skills");
+  const id = req.params.id;
+
+  Skills.findOne({ type: req.body.type })
+    .then(item => {
+      item.skills.id(id).remove();
+      if (item.skills.length === 0) {
+        return Skills.deleteOne({ type: req.body.type });
+      }
+
+      return item.save();
+    })
+    .then(item => {
+      console.log("Skills after set/remove model", item);
+
+      if (!!item) res.status(201).json({ message: "Запись успешно удалена" });
+      else {
+        res.status(404).json({ message: "Запись в БД не обнаружена" });
+      }
+    })
+    .catch(error => {
+      console.log("editSkill findByIdAndRemove error", error.message);
+      res.status(400).json({
+        message: `При удалении  записи произошла ошибка: + ${error.message}`
+      });
+    });
+};
 module.exports.deleteSkill = (req, res) => {};
