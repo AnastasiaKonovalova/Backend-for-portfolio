@@ -17,7 +17,7 @@ router.delete("/works/:id", worksController.deleteWork);
 
 router.get("/skills", skillsController.getSkills);
 router.post("/skills", skillsController.createSkill);
-router.put("/skills/:id", skillsController.editSkill);
-router.delete("/skills/:id", skillsController.deleteSkill);
+router.put("/skills", skillsController.editSkills);
+router.put("/skills/:id", skillsController.deleteSkill);
 
 module.exports = router;

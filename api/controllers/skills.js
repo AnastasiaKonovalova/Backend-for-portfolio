@@ -35,12 +35,14 @@ module.exports.createSkill = (req, res) => {
       });
     });
 };
-module.exports.editSkill = (req, res) => {
+module.exports.deleteSkill = (req, res) => {
   const Skills = mongoose.model("skills");
   const id = req.params.id;
 
+  console.log("req.body", req.body);
   Skills.findOne({ type: req.body.type })
     .then(item => {
+      console.log("Skills.findOne item", item);
       item.skills.id(id).remove();
       if (item.skills.length === 0) {
         return Skills.deleteOne({ type: req.body.type });
@@ -49,8 +51,6 @@ module.exports.editSkill = (req, res) => {
       return item.save();
     })
     .then(item => {
-      console.log("Skills after set/remove model", item);
-
       if (!!item) res.status(201).json({ message: "Запись успешно удалена" });
       else {
         res.status(404).json({ message: "Запись в БД не обнаружена" });
@@ -63,4 +63,51 @@ module.exports.editSkill = (req, res) => {
       });
     });
 };
-module.exports.deleteSkill = (req, res) => {};
+module.exports.editSkills = (req, res) => {
+  const Skills = mongoose.model("skills");
+
+  Skills.deleteMany({}, error => {
+    if (error) {
+      console.log("Skills.remove error", error);
+      return res.status(400).json({
+        message: `При удалении  записи произошла ошибка: + ${error.message}`
+      });
+    }
+
+    const docs = Object.keys(req.body).map(key => {
+      const skills = req.body[key];
+      console.log("editSkills skills", skills);
+
+      const test = Object.keys(skills).reduce((acc, inputKey) => {
+        if (/_percent/.test(inputKey)) {
+          acc[acc.length - 1].percent = skills[inputKey];
+        } else {
+          const newSkill = {
+            skill: skills[inputKey]
+          };
+          acc = [...acc, newSkill];
+        }
+        return acc;
+      }, []);
+      const skill = new Skills({
+        type: key,
+        skills: test
+      });
+
+      return skill;
+    });
+
+    console.log("docs", docs);
+
+    Promise.all(docs.map(doc => doc.save()))
+      .then(items => {
+        return res.status(201).json({ message: "Изменения успешно сохранены", items: items });
+      })
+      .catch(error => {
+        console.log("При изменении записи произошла ошибка", error);
+        res.status(400).json({
+          message: `При изменении записи произошла ошибка: + ${error.message}`
+        });
+      });
+  });
+};
