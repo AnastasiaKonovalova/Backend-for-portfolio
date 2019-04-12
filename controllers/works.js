@@ -2,6 +2,7 @@ const cheerio = require("cheerio");
 const path = require("path");
 const axios = require("axios");
 const config = require("../config/config.json");
+const nodemailer = require("nodemailer");
 
 const apiRequest = axios.create({
   baseURL: config.apiOptions.server
@@ -39,4 +40,24 @@ module.exports.getWorksPage = (req, res, next) => {
       res.send(html);
     })
     .catch(error => console.log("getWorksPage error axios", error));
+};
+
+module.exports.sendMail = (req, res) => {
+  console.log("sendMail req.body", req.body);
+
+  const transporter = nodemailer.createTransport(config.mail.smtp);
+  const mailOptions = {
+    from: `"${req.body.name}" <${req.body.mail}>`,
+    to: config.mail.smtp.auth.user,
+    subject: config.mail.subject,
+    text: req.body.message.trim().slice(0, 500) + `\n Отправлено с: <${req.body.mail}>`
+  };
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log("transporter.sendMail error", error);
+      return res.status(400).json({ status: "err", message: "Приотправке письма произошла ошибка" + error.message });
+    }
+    console.log("Письмо успешно отправлено");
+    res.status(200).json({ status: "ok", message: "Письмо успешно отправлено" });
+  });
 };

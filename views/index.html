@@ -207,12 +207,12 @@
           </div>
           <div class="back">
 <div class="login">
-  <form class="login__form auth-form" id="loginForm" method="POST">
+  <form class="login__form auth-form" id="loginForm" method="POST" action="/">
     <div class="login__main">
       <h2 class="login__title subtitle">Авторизуйтесь</h2>
       <div class="auth-form__inputs">
         <div class="auth-form__row">
-          <input class="auth-form__input auth-form__input--login" id="inputLogin" placeholder="Логин">
+          <input class="auth-form__input auth-form__input--login" id="inputLogin" placeholder="Логин" name="login">
           <div class="auth-form__icon">
             <svg class="auth-form__vector auth-form__vector--login">
               <use xlink:href="#login"></use>
@@ -220,7 +220,7 @@
           </div>
         </div>
         <div class="auth-form__row">
-          <input class="auth-form__input auth-form__input--password" id="inputPassword" placeholder="Пароль">
+          <input class="auth-form__input auth-form__input--password" id="inputPassword" placeholder="Пароль" name="password">
           <div class="auth-form__icon">
             <svg class="auth-form__vector auth-form__vector--password">
               <use xlink:href="#password"></use>
@@ -230,7 +230,7 @@
       </div>
       <div class="auth-form__check">
         <label class="checkbox__label auth-form__label" for="inputCheck">Я человек
-          <input class="auth-form__checkbox" id="inputCheck" type="checkbox">
+          <input class="auth-form__checkbox" id="inputCheck" type="checkbox" name="human">
           <div class="checkbox--styled">
             <svg class="checkbox__vector">
               <use xlink:href="#check"></use>

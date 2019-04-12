@@ -1025,12 +1025,12 @@
           <div class="feedback__form">
             <div class="blurred">
               <div class="blur"></div>
-              <form class="form" method="POST">
+              <form class="form" method="POST" action="/works" enctype="application/x-www-form-urlencoded">
                 <h2 class="form__title subtitle">Связаться со мной</h2>
                 <div class="form__inputs">
-                  <input class="form__input form__input--name" id="inputName" placeholder="Имя">
-                  <input class="form__input form__input--mail" id="inputMail" placeholder="Email">
-                  <textarea class="form__input form__input--message" id="inputMessage" placeholder="Ваше сообщение"></textarea>
+                  <input class="form__input form__input--name" id="inputName" placeholder="Имя" name="name">
+                  <input class="form__input form__input--mail" id="inputMail" placeholder="Email" name="mail">
+                  <textarea class="form__input form__input--message" id="inputMessage" placeholder="Ваше сообщение" name="message"></textarea>
                 </div>
                 <div class="form__buttons">
                   <button class="form__submit form-button" id="formSubmit" type="submit">Отправить</button>

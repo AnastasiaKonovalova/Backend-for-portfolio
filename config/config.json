@@ -8,5 +8,18 @@
   },
   "apiOptions": {
     "server": "http://localhost:3000"
+  },
+  "mail": {
+    "subject": "Сообщение с сайта-портфолио",
+    "tls": { "rejectUnauthorized": false },
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "konast.9@gmail.com",
+        "pass": "xbdbrjdpilatus_123"
+      }
+    }
   }
 }

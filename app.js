@@ -8,6 +8,10 @@ const cors = require("cors");
 
 require("./api/models/db");
 
+const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 const indexRouter = require("./routes/index");
 const indexApiRouter = require("./api/routes/index");
 
@@ -27,13 +31,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(
+  session({
+    secret: "portfolio",
+    cookie: {
+      path: "/",
+      httpOnly: true,
+      maxAge: null
+    },
+    saveUninitialized: false,
+    resave: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api", indexApiRouter);
 
 // //send react html, needs testing
-app.use("/admin", (req, res) => {
+const isAdmin = (req, res, next) => {
+  if (req.session.isAdmin) {
+    return next();
+  }
+  res.redirect("/");
+};
+
+app.use("/admin", isAdmin, (req, res) => {
   res.sendFile(path.resolve(__dirname, "./views/admin", "index.html"));
 });
 

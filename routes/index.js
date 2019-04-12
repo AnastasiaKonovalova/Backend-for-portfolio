@@ -8,7 +8,11 @@ const indexController = require("../controllers/index");
 
 router.get("/about", aboutController.getAboutPage);
 router.get("/blog", blogController.getBlogPage);
+
 router.get("/works", worksController.getWorksPage);
+router.post("/works", worksController.sendMail);
+
 router.get("/", indexController.getIndexPage);
+router.post("/", indexController.authorize);
 
 module.exports = router;

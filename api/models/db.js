@@ -35,3 +35,4 @@ process.on("SIGINT", () => {
 require("./works");
 require("./blog");
 require("./skills");
+require("./user");

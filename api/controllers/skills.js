@@ -26,7 +26,7 @@ module.exports.createSkill = (req, res) => {
       }
     })
     .then(item => {
-      return res.status(201).json({ message: "Запись успешно добавлена", skill: item });
+      return res.status(201).json({ message: "Запись успешно добавлена в базу данных", skill: item });
     })
     .catch(error => {
       console.log("При добавлении записи произошла ошибка");
@@ -63,6 +63,7 @@ module.exports.deleteSkill = (req, res) => {
       });
     });
 };
+
 module.exports.editSkills = (req, res) => {
   const Skills = mongoose.model("skills");
 
@@ -76,7 +77,6 @@ module.exports.editSkills = (req, res) => {
 
     const docs = Object.keys(req.body).map(key => {
       const skills = req.body[key];
-      console.log("editSkills skills", skills);
 
       const test = Object.keys(skills).reduce((acc, inputKey) => {
         if (/_percent/.test(inputKey)) {
@@ -96,8 +96,6 @@ module.exports.editSkills = (req, res) => {
 
       return skill;
     });
-
-    console.log("docs", docs);
 
     Promise.all(docs.map(doc => doc.save()))
       .then(items => {
