@@ -9,18 +9,13 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react"],
   "rules": {
     "semi": ["error", "always"],
     "indent": ["error", 2],
     "object-curly-spacing": ["error", "always"],
-    "react/jsx-uses-react": ["error"],
-    "react/jsx-uses-vars": ["error"]
+    "quotes": ["error", "single"]
   }
 }

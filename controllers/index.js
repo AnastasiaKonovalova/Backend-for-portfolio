@@ -1,6 +1,6 @@
-const cheerio = require("cheerio");
-const config = require("../config/config.json");
-const axios = require("axios");
+const cheerio = require('cheerio');
+const config = require('../config/config.json');
+const axios = require('axios');
 
 const apiRequest = axios.create({
   baseURL: config.apiOptions.server
@@ -8,7 +8,7 @@ const apiRequest = axios.create({
 
 const renderPage = app => {
   let rootHTML;
-  app.render("index.html", (err, html) => (rootHTML = html));
+  app.render('index.html', (err, html) => (rootHTML = html));
 
   const fnHTML = cheerio.load(rootHTML);
   return fnHTML.html();
@@ -25,13 +25,13 @@ module.exports.authorize = (req, res) => {
     password: req.body.password
   };
   apiRequest
-    .post("/api/user", payload)
+    .post('/api/user', payload)
     .then(response => {
       req.session.isAdmin = true;
-      res.redirect("/admin");
+      res.redirect('/admin');
     })
     .catch(error => {
-      console.log("При авторизации произошла ошибка", error.message);
+      console.log('При авторизации произошла ошибка', error.message);
 
       res.status(400).json({
         message: `При авторизации произошла ошибка: + ${error.message}`

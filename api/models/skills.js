@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -7,4 +7,4 @@ const SkillsSchema = new Schema({
   skills: [{ skill: String, percent: Number }]
 });
 
-mongoose.model("skills", SkillsSchema);
+mongoose.model('skills', SkillsSchema);

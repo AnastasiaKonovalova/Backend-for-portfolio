@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-const formidable = require("formidable");
-const fs = require("fs");
-const path = require("path");
+const mongoose = require('mongoose');
+const formidable = require('formidable');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.getWorks = (req, res) => {
-  const Works = mongoose.model("works");
+  const Works = mongoose.model('works');
 
   Works.find().then(items => {
     res.status(200).json({ works: items });
@@ -12,20 +12,20 @@ module.exports.getWorks = (req, res) => {
 };
 
 module.exports.deleteWork = (req, res) => {
-  const Works = mongoose.model("works");
+  const Works = mongoose.model('works');
   const id = req.params.id;
   Works.findByIdAndRemove(id)
     .then(item => {
-      console.log("findByIdAndRemove", item);
-      if (!!item) {
-        fs.unlink(path.join("public/", item.img));
-        res.status(201).json({ message: "Запись успешно удалена" });
+      console.log('findByIdAndRemove', item);
+      if (item) {
+        fs.unlink(path.join('public/', item.img));
+        res.status(201).json({ message: 'Запись успешно удалена' });
       } else {
-        res.status(404).json({ message: "Запись в БД не обнаружена" });
+        res.status(404).json({ message: 'Запись в БД не обнаружена' });
       }
     })
     .catch(error => {
-      console.log("findByIdAndRemove error", error.message);
+      console.log('findByIdAndRemove error', error.message);
       res.status(400).json({
         message: `При удалении  записи произошла ошибка: + ${error.message}`
       });
@@ -33,7 +33,7 @@ module.exports.deleteWork = (req, res) => {
 };
 
 module.exports.createWork = (req, res) => {
-  const upload = "public/upload";
+  const upload = 'public/upload';
   if (!fs.existsSync(upload)) {
     fs.mkdirSync(upload);
   }
@@ -58,8 +58,8 @@ module.exports.createWork = (req, res) => {
       });
       return;
     }
-    const dbPath = fileName.replace(/public/, "");
-    const Works = mongoose.model("works");
+    const dbPath = fileName.replace(/public/, '');
+    const Works = mongoose.model('works');
     const item = new Works({
       title: fields.title,
       stack: fields.stack,
@@ -70,11 +70,11 @@ module.exports.createWork = (req, res) => {
     item
       .save()
       .then(item => {
-        console.log("Запись успешно добавлена");
-        res.status(201).json({ message: "Запись успешно добавлена", work: item });
+        console.log('Запись успешно добавлена');
+        res.status(201).json({ message: 'Запись успешно добавлена', work: item });
       })
       .catch(err => {
-        console.log("При добавлении записи произошла ошибка");
+        console.log('При добавлении записи произошла ошибка');
         res.status(400).json({
           message: `При добавлении записи произошла ошибка: + ${error.message}`
         });

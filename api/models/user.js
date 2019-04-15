@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const crypto = require("crypto");
+const mongoose = require('mongoose');
+const crypto = require('crypto');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -12,16 +12,16 @@ const UserSchema = new Schema({
   salt: String
 });
 
-UserSchema.methods.setPassword = function(password) {
-  console.log("setPassword");
-  this.salt = crypto.randomBytes(16).toString("hex");
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, "sha512").toString("hex");
+UserSchema.methods.setPassword = function (password) {
+  console.log('setPassword');
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, 'sha512').toString('hex');
 };
 
-UserSchema.methods.validPassword = function(password) {
-  console.log("validPassword");
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, "sha512").toString("hex");
+UserSchema.methods.validPassword = function (password) {
+  console.log('validPassword');
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 512, 'sha512').toString('hex');
   return this.hash === hash;
 };
 
-mongoose.model("user", UserSchema);
+mongoose.model('user', UserSchema);
