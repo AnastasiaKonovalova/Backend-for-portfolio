@@ -42,8 +42,6 @@ module.exports.getWorksPage = (req, res, next) => {
 };
 
 module.exports.sendMail = (req, res) => {
-  console.log('sendMail req.body', req.body);
-
   const transporter = nodemailer.createTransport(config.mail.smtp);
   const mailOptions = {
     from: `"${req.body.name}" <${req.body.mail}>`,
@@ -53,10 +51,8 @@ module.exports.sendMail = (req, res) => {
   };
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
-      console.log('transporter.sendMail error', error);
-      return res.status(400).json({ status: 'err', message: 'Приотправке письма произошла ошибка' + error.message });
+      return res.status(400).json({ status: 'err', message: 'При отправке письма произошла ошибка: ' + error.message });
     }
-    console.log('Письмо успешно отправлено');
     res.status(200).json({ status: 'ok', message: 'Письмо успешно отправлено' });
   });
 };

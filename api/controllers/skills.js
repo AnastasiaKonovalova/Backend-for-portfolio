@@ -26,23 +26,18 @@ module.exports.createSkill = (req, res) => {
       }
     })
     .then(item => {
-      return res.status(201).json({ message: 'Запись успешно добавлена в базу данных', skill: item });
+      return res.status(201).json({ status: 'ok', message: 'Запись успешно добавлена в базу данных', skill: item });
     })
     .catch(error => {
-      console.log('При добавлении записи произошла ошибка');
-      res.status(400).json({
-        message: `При добавлении записи произошла ошибка: + ${error.message}`
-      });
+      res.status(400).json({ status: 'err', message: `При добавлении записи произошла ошибка: + ${error.message}` });
     });
 };
 module.exports.deleteSkill = (req, res) => {
   const Skills = mongoose.model('skills');
   const id = req.params.id;
 
-  console.log('req.body', req.body);
   Skills.findOne({ type: req.body.type })
     .then(item => {
-      console.log('Skills.findOne item', item);
       item.skills.id(id).remove();
       if (item.skills.length === 0) {
         return Skills.deleteOne({ type: req.body.type });
@@ -51,16 +46,13 @@ module.exports.deleteSkill = (req, res) => {
       return item.save();
     })
     .then(item => {
-      if (item) res.status(201).json({ message: 'Запись успешно удалена' });
+      if (item) res.status(201).json({ status: 'ok', message: 'Запись успешно удалена' });
       else {
-        res.status(404).json({ message: 'Запись в БД не обнаружена' });
+        res.status(404).json({ status: 'err', message: 'Запись в БД не обнаружена' });
       }
     })
     .catch(error => {
-      console.log('editSkill findByIdAndRemove error', error.message);
-      res.status(400).json({
-        message: `При удалении  записи произошла ошибка: + ${error.message}`
-      });
+      res.status(400).json({ status: 'err', message: `При удалении  записи произошла ошибка: + ${error.message}` });
     });
 };
 
@@ -69,10 +61,9 @@ module.exports.editSkills = (req, res) => {
 
   Skills.deleteMany({}, error => {
     if (error) {
-      console.log('Skills.remove error', error);
-      return res.status(400).json({
-        message: `При удалении  записи произошла ошибка: + ${error.message}`
-      });
+      return res
+        .status(400)
+        .json({ status: 'err', message: `При удалении  записи произошла ошибка: + ${error.message}` });
     }
 
     const docs = Object.keys(req.body).map(key => {
@@ -99,13 +90,10 @@ module.exports.editSkills = (req, res) => {
 
     Promise.all(docs.map(doc => doc.save()))
       .then(items => {
-        return res.status(201).json({ message: 'Изменения успешно сохранены', items: items });
+        return res.status(201).json({ status: 'ok', message: 'Изменения успешно сохранены', items: items });
       })
       .catch(error => {
-        console.log('При изменении записи произошла ошибка', error);
-        res.status(400).json({
-          message: `При изменении записи произошла ошибка: + ${error.message}`
-        });
+        res.status(400).json({ status: 'err', message: `При изменении записи произошла ошибка: + ${error.message}` });
       });
   });
 };

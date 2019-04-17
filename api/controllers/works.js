@@ -16,19 +16,15 @@ module.exports.deleteWork = (req, res) => {
   const id = req.params.id;
   Works.findByIdAndRemove(id)
     .then(item => {
-      console.log('findByIdAndRemove', item);
       if (item) {
         fs.unlink(path.join('public/', item.img));
-        res.status(201).json({ message: 'Запись успешно удалена' });
+        res.status(201).json({ status: 'ok', message: 'Запись успешно удалена' });
       } else {
-        res.status(404).json({ message: 'Запись в БД не обнаружена' });
+        res.status(404).json({ status: 'err', message: 'Запись в БД не обнаружена' });
       }
     })
     .catch(error => {
-      console.log('findByIdAndRemove error', error.message);
-      res.status(400).json({
-        message: `При удалении  записи произошла ошибка: + ${error.message}`
-      });
+      res.status(400).json({ status: 'err', message: `При удалении  записи произошла ошибка: + ${error.message}` });
     });
 };
 
@@ -53,9 +49,7 @@ module.exports.createWork = (req, res) => {
     });
 
     if (error) {
-      res.status(400).json({
-        message: `При добавлении записи произошла ошибка: + ${error.message}`
-      });
+      res.status(400).json({ status: 'err', message: `При добавлении записи произошла ошибка: + ${error.message}` });
       return;
     }
     const dbPath = fileName.replace(/public/, '');
@@ -70,14 +64,10 @@ module.exports.createWork = (req, res) => {
     item
       .save()
       .then(item => {
-        console.log('Запись успешно добавлена');
-        res.status(201).json({ message: 'Запись успешно добавлена', work: item });
+        res.status(201).json({ status: 'ok', message: 'Запись успешно добавлена', work: item });
       })
-      .catch(err => {
-        console.log('При добавлении записи произошла ошибка');
-        res.status(400).json({
-          message: `При добавлении записи произошла ошибка: + ${error.message}`
-        });
+      .catch(error => {
+        res.status(400).json({ status: 'err', message: `При добавлении записи произошла ошибка: + ${error.message}` });
       });
   });
 };

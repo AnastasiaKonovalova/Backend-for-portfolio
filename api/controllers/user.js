@@ -6,7 +6,7 @@ module.exports.authorize = (req, res) => {
   User.findOne({ login: req.body.login })
     .then(user => {
       if (!user) {
-        return res.status(404).json({ status: 'err', message: 'Пользователя не существует' });
+        return res.status(404).json({ status: 'err', message: 'Такого пользователя не существует' });
       }
       if (!user.validPassword(req.body.password)) {
         return res.status(400).json({ status: 'err', message: 'Пароль неверен' });

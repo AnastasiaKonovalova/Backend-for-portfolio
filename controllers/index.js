@@ -31,10 +31,10 @@ module.exports.authorize = (req, res) => {
       res.redirect('/admin');
     })
     .catch(error => {
-      console.log('При авторизации произошла ошибка', error.message);
+      console.log('При авторизации произошла ошибка', error.response.data.message);
 
       res.status(400).json({
-        message: `При авторизации произошла ошибка: + ${error.message}`
+        message: `При авторизации произошла ошибка: ${error.response.data.message}`
       });
     });
 };

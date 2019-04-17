@@ -8,8 +8,7 @@ const BlogSchema = new Schema({
     required: [true, 'Укажите заголовок статьи']
   },
   date: {
-    type: Date,
-    default: Date.now,
+    type: String,
     required: [true, 'Укажите дату публикации']
   },
   text: {

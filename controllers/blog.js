@@ -51,19 +51,4 @@ module.exports.getBlogPage = (req, res, next) => {
       res.send(html);
     })
     .catch(error => console.log('getBlogPage error axios', error));
-
-  // const pathApi = "/api/blog";
-  // const requestOptions = {
-  //   url: config.apiOptions.server + pathApi,
-  //   method: "GET"
-  // };
-
-  // http(requestOptions, (error, response, body) => {
-  //   if (error) console.log("error getBlogPage http", error);
-
-  //   const { articles } = JSON.parse(body);
-  //   console.log("getBlogPage http articles", articles);
-  //   const html = renderPage(req.app, articles);
-  //   res.send(html);
-  // });
 };
