@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 'stable'
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $hpo
+  strategy: git
+  app:
+    master: portfolio-one
+  run:
+    - restart

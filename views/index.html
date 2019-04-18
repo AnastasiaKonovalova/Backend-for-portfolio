@@ -207,6 +207,12 @@
           </div>
           <div class="back">
 <div class="login">
+<div class="modal__wrapper">
+  <div class="modal__container">
+    <div class="modal__text">Сообщение успешно отправлено</div>
+    <div class="modal__button">Закрыть</div>
+  </div>
+</div>
   <form class="login__form auth-form" id="loginForm" method="POST" action="/">
     <div class="login__main">
       <h2 class="login__title subtitle">Авторизуйтесь</h2>
@@ -220,37 +226,12 @@
           </div>
         </div>
         <div class="auth-form__row">
-          <input class="auth-form__input auth-form__input--password" id="inputPassword" placeholder="Пароль" name="password">
+          <input class="auth-form__input auth-form__input--password" id="inputPassword" placeholder="Пароль" name="password" type="password">
           <div class="auth-form__icon">
             <svg class="auth-form__vector auth-form__vector--password">
               <use xlink:href="#password"></use>
             </svg>
           </div>
-        </div>
-      </div>
-      <div class="auth-form__check">
-        <label class="checkbox__label auth-form__label" for="inputCheck">Я человек
-          <input class="auth-form__checkbox" id="inputCheck" type="checkbox" name="human">
-          <div class="checkbox--styled">
-            <svg class="checkbox__vector">
-              <use xlink:href="#check"></use>
-            </svg>
-          </div>
-        </label>
-      </div>
-      <div class="auth-form__question">Вы точно не робот?</div>
-      <div class="auth-form__radio">
-        <div class="radio__block radio__block--left">
-          <label class="radio__label auth-form__label" for="radioYes">Да
-            <input class="radio__input" id="radioYes" type="radio" name="robot">
-            <div class="radio--styled"></div>
-          </label>
-        </div>
-        <div class="radio__block radio__block--right">
-          <label class="radio__label auth-form__label" for="radioNo">Не уверен
-            <input class="radio__input" id="radioNo" type="radio" name="robot">
-            <div class="radio--styled"></div>
-          </label>
         </div>
       </div>
     </div>

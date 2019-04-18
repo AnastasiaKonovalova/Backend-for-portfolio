@@ -2,8 +2,13 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/error.css')
+    meta(charset = "utf-8")
+    meta(name="viewport", content="initial-scale=1.0, width=device-width")
   body
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    .error__wrapper
+      .error__container
+        h2.error__text Что-то пошло не так: 
+        h2.error__text= message
+        h2.error__text= error.status
+    

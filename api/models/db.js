@@ -3,14 +3,25 @@ const config = require('../../config/config.json');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`).catch(e => {
-  console.error('mongoose connect error', e);
-  throw e;
-});
+mongoose
+  .connect('mongodb+srv://portfolioDB:xbdbrjd@portfoliodb-np11a.mongodb.net/test?retryWrites=true', {
+    useNewUrlParser: true
+  })
+  .catch(e => {
+    console.error('mongoose connect error', e);
+    throw e;
+  });
+// mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`).catch(e => {
+//   console.error('mongoose connect error', e);
+//   throw e;
+// });
 
 mongoose.connection.on('connected', () => {
-  console.log(`Mongoose connection opened: mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
+  console.log('Mongoose connection opened');
 });
+// mongoose.connection.on('connected', () => {
+//   console.log(`Mongoose connection opened: mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
+// });
 
 mongoose.connection.on('error', err => {
   console.log(`Mongoose connection error: ${err}`);

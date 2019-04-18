@@ -7,11 +7,19 @@ const r1 = readline.createInterface({
 const config = require('./config/config.json');
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`, { useNewUrlParser: true })
+  .connect('mongodb+srv://portfolioDB:xbdbrjd@portfoliodb-np11a.mongodb.net/test?retryWrites=true', {
+    useNewUrlParser: true
+  })
   .catch(error => {
     console.error('adding user mongoose connect error', error);
     throw error;
   });
+// mongoose
+//   .connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`, { useNewUrlParser: true })
+//   .catch(error => {
+//     console.error('adding user mongoose connect error', error);
+//     throw error;
+//   });
 
 let login = '';
 let password = '';

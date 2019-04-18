@@ -1,7 +1,7 @@
 -var works = myWorks
-
 .slider__section
     if works.length
+
         .works__description
             .central
                 .works__title.subtitle= works[0].title
@@ -16,10 +16,10 @@
 
             each work, index in works
                 if index === 0
-                    div(class = "works__img works__img--active")
+                    div(class = "works__img works__img--active works__img--" + work.id)
                         img.works__pic(src=work.img)
                 else
-                    div(class = "works__img")
+                    div(class = "works__img works__img--" + work._id)
                         img.works__pic(src=work.img)
 
         .works__slider
@@ -53,4 +53,4 @@
                         svg.slider__vector
                             use(xlink:href="#arrow_up")
     else 
-        .works__fallback.subtitle Работ пока нет
+        .works__title.subtitle Работ пока нет
