@@ -26,12 +26,14 @@ const renderPage = (app, skills) => {
 };
 
 module.exports.getAboutPage = (req, res, next) => {
-  apiRequest
-    .get('/api/skills')
+  // console.log('req', req);
+  axios
+    // .get('/api/skills')
+    .get(`${req.protocol}://${req.get('host')}/api/skills`)
     .then(response => {
       const { skills } = response.data;
       const html = renderPage(req.app, skills);
       res.send(html);
     })
-    .catch(error => console.log('getBlogPage error axios', error));
+    .catch(error => console.log('getAboutPage error axios', error));
 };

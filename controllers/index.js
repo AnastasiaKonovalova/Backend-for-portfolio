@@ -24,8 +24,11 @@ module.exports.authorize = (req, res) => {
     login: req.body.login,
     password: req.body.password
   };
-  apiRequest
-    .post('/api/user', payload)
+  // apiRequest
+  // .post('/api/user', payload)
+
+  axios
+    .post(`${req.protocol}://${req.get('host')}/api/user`, payload)
     .then(response => {
       req.session.isAdmin = true;
       res.redirect('/admin');

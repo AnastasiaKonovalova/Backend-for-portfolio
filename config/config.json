@@ -7,7 +7,7 @@
     "password": ""
   },
   "apiOptions": {
-    "server": "/"
+    "server": "http://localhost:3000"
   },
   "mail": {
     "subject": "Сообщение с сайта-портфолио",

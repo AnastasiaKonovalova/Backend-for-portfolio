@@ -31,8 +31,11 @@ const renderPage = (app, works) => {
 };
 
 module.exports.getWorksPage = (req, res, next) => {
-  apiRequest
-    .get('/api/works', { mode: 'cors' })
+  // apiRequest
+  //   .get('/api/works', { mode: 'cors' })
+
+  axios
+    .get(`${req.protocol}://${req.get('host')}/api/works`)
     .then(response => {
       const { data } = response;
       const html = renderPage(req.app, data.works);

@@ -43,8 +43,9 @@ const renderPage = (app, articles) => {
 };
 
 module.exports.getBlogPage = (req, res, next) => {
-  apiRequest
-    .get('/api/blog')
+  axios
+    .get(`${req.protocol}://${req.get('host')}/api/blog`)
+    // .get('/api/blog')
     .then(response => {
       const { data } = response;
       const html = renderPage(req.app, data.articles);
