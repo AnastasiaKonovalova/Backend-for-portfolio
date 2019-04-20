@@ -3,15 +3,16 @@ const axios = require('axios');
 const config = require('../config/config.json');
 const nodemailer = require('nodemailer');
 
-const apiRequest = axios.create({
-  baseURL: config.apiOptions.server
-});
-
 const renderPage = (app, works) => {
   let rootHTML;
   let sliderHTML;
 
-  app.render('works.html', (err, html) => (rootHTML = html));
+  app.render('works.html', (err, html) => {
+    if (err) {
+      console.log('works render error', err);
+    }
+    return (rootHTML = html);
+  });
   app.render(
     'components/works/slider.pug',
     {
@@ -31,9 +32,6 @@ const renderPage = (app, works) => {
 };
 
 module.exports.getWorksPage = (req, res, next) => {
-  // apiRequest
-  //   .get('/api/works', { mode: 'cors' })
-
   axios
     .get(`${req.protocol}://${req.get('host')}/api/works`)
     .then(response => {

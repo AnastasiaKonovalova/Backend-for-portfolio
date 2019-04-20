@@ -1,15 +1,15 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
-const config = require('../config/config.json');
-
-const apiRequest = axios.create({
-  baseURL: config.apiOptions.server
-});
 
 const renderPage = (app, skills) => {
   let rootHTML;
   let stackListHTML;
-  app.render('about.html', (err, html) => (rootHTML = html));
+  app.render('about.html', (err, html) => {
+    if (err) {
+      console.log('about render error', err);
+    }
+    return (rootHTML = html);
+  });
   app.render(
     'components/about/stack_list.pug',
     {
@@ -26,9 +26,7 @@ const renderPage = (app, skills) => {
 };
 
 module.exports.getAboutPage = (req, res, next) => {
-  // console.log('req', req);
   axios
-    // .get('/api/skills')
     .get(`${req.protocol}://${req.get('host')}/api/skills`)
     .then(response => {
       const { skills } = response.data;

@@ -1,14 +1,14 @@
 const cheerio = require('cheerio');
-const config = require('../config/config.json');
 const axios = require('axios');
-
-const apiRequest = axios.create({
-  baseURL: config.apiOptions.server
-});
 
 const renderPage = app => {
   let rootHTML;
-  app.render('index.html', (err, html) => (rootHTML = html));
+  app.render('index.html', (err, html) => {
+    if (err) {
+      console.log('index render error', err);
+    }
+    return (rootHTML = html);
+  });
 
   const fnHTML = cheerio.load(rootHTML);
   return fnHTML.html();
@@ -24,9 +24,6 @@ module.exports.authorize = (req, res) => {
     login: req.body.login,
     password: req.body.password
   };
-  // apiRequest
-  // .post('/api/user', payload)
-
   axios
     .post(`${req.protocol}://${req.get('host')}/api/user`, payload)
     .then(response => {
