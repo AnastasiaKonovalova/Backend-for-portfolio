@@ -6,9 +6,6 @@
     "user": "",
     "password": ""
   },
-  "apiOptions": {
-    "server": "http://localhost:3000"
-  },
   "mail": {
     "subject": "Сообщение с сайта-портфолио",
     "tls": { "rejectUnauthorized": false },
