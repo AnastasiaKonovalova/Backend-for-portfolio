@@ -17,7 +17,7 @@ module.exports.deleteWork = (req, res) => {
   Works.findByIdAndRemove(id)
     .then(item => {
       if (item) {
-        fs.unlink(path.join('public/', item.img));
+        fs.unlink(path.normalize(path.join('public', item.img)));
         res.status(201).json({ status: 'ok', message: 'Запись успешно удалена' });
       } else {
         res.status(404).json({ status: 'err', message: 'Запись в БД не обнаружена' });
