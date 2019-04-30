@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -26,7 +27,8 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+app.use(logger('dev', { stream: accessLogStream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
